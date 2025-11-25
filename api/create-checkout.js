@@ -26,10 +26,10 @@ export default async function handler(req, res) {
         },
       ],
       mode: 'subscription',
-      success_url: `${process.env.BASE_URL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.BASE_URL}/pricing.html`,
+      success_url: `https://saasyscribepro-license.vercel.app/success.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `https://saasyscribepro-license.vercel.app/pricing.html`,
       metadata: {
-        product: 'saasy-scribe-pro-monthly'
+        product: 'saasy-sscribe-pro-monthly'
       }
     });
 
