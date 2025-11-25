@@ -1,23 +1,24 @@
-{
-  "name": "saasyscribepro-license",
-  "version": "1.0.0",
-  "description": "License verification for SaaSy Scribe Pro",
-  "scripts": {
-    "dev": "vercel dev"
-  },
-  "dependencies": {},
-  "devDependencies": {}
-
+[
   {
-  "name": "saasyscribepro-license",
-  "version": "1.0.0",
-  "description": "License verification for SaaSy Scribe Pro",
-  "scripts": {
-    "dev": "vercel dev"
+    "name": "saasyscribepro-license",
+    "version": "1.0.0",
+    "description": "License verification for SaaSy Scribe Pro",
+    "scripts": {
+      "dev": "vercel dev"
+    },
+    "dependencies": {},
+    "devDependencies": {}
   },
-  "dependencies": {
-    "@supabase/supabase-js": "^2.38.0"
-  },
-  "devDependencies": {}
-}
-}
+  {
+    "name": "saasyscribepro-license",
+    "version": "1.0.0",
+    "description": "License verification for SaaSy Scribe Pro",
+    "scripts": {
+      "dev": "vercel dev"
+    },
+    "dependencies": {
+      "@supabase/supabase-js": "^2.38.0"
+    },
+    "devDependencies": {}
+  }
+]
