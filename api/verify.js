@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
-  'https://[YOUR-PROJECT-ID].supabase.co',
-  'eyJ[YOUR-ANON-KEY]'
+  'https://YOUR-ACTUAL-PROJECT-ID.supabase.co',  // ← REPLACE THIS
+  'YOUR-ACTUAL-ANON-KEY'  // ← REPLACE THIS
 );
 
 export default async function handler(req, res) {
