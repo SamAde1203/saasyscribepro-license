@@ -3,55 +3,582 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SaaSy Scribe Pro - Pricing</title>
+    <title>SaaSy Scribe Pro | Premium AI Content Strategy</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; }
-        .pricing-card { border: 1px solid #e1e5e9; border-radius: 12px; padding: 40px; text-align: center; margin: 40px 0; }
-        .price { font-size: 48px; font-weight: bold; color: #0070f3; }
-        .button { background: #0070f3; color: white; padding: 16px 32px; border-radius: 8px; text-decoration: none; display: inline-block; font-weight: bold; }
-        .features { text-align: left; margin: 30px 0; }
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --neon-glow: 0 0 30px rgba(99, 102, 241, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape {
+            position: absolute;
+            background: var(--gradient);
+            border-radius: 50%;
+            opacity: 0.08;
+            animation: float 25s infinite linear;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .pricing-hero {
+            padding: 120px 5% 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .pricing-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pricing-hero p {
+            font-size: 1.3rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        /* Pricing Cards */
+        .pricing-section {
+            padding: 2rem 5% 8rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--gradient);
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 2px solid var(--primary);
+            box-shadow: var(--neon-glow);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 40px 80px rgba(99, 102, 241, 0.15);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-15px);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .plan-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .plan-description {
+            color: #64748b;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .price {
+            font-size: 4rem;
+            font-weight: 800;
+            margin: 2rem 0;
+            color: var(--primary);
+        }
+
+        .price span {
+            font-size: 1.5rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .features-list {
+            text-align: left;
+            margin: 2.5rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-item::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 1rem;
+            font-size: 1.3rem;
+            background: rgba(16, 185, 129, 0.1);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-item.premium::before {
+            content: '⚡';
+            color: var(--secondary);
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .cta-button {
+            width: 100%;
+            background: var(--gradient);
+            color: white;
+            padding: 1.2rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: block;
+            text-align: center;
+            box-shadow: var(--neon-glow);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .guarantee-badge {
+            text-align: center;
+            margin-top: 2rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 5%;
+            background: white;
+            margin-top: 4rem;
+            border-radius: 24px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 6rem 5%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 5%;
+            text-align: center;
+            margin-top: 6rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .pricing-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
     </style>
 </head>
 <body>
-    <h1>🚀 SaaSy Scribe Pro</h1>
-    <p>Elite AI Content Strategy for SaaS Companies</p>
-    
-    <div class="pricing-card">
-        <h2>Monthly Subscription</h2>
-        <div class="price">$197<span style="font-size: 20px; color: #666;">/month</span></div>
-        
-        <div class="features">
-            <p>✅ Unlimited content outlines with competitive analysis</p>
-            <p>✅ SEO optimization frameworks</p>
-            <p>✅ Conversion-focused CTAs and strategies</p>
-            <p>✅ Priority support</p>
-            <p>✅ Cancel anytime</p>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="floating-shapes">
+            <div class="shape" style="width: 400px; height: 400px; top: 10%; left: 5%; animation-delay: 0s;"></div>
+            <div class="shape" style="width: 250px; height: 250px; top: 60%; left: 80%; animation-delay: -8s;"></div>
+            <div class="shape" style="width: 300px; height: 300px; top: 30%; left: 70%; animation-delay: -15s;"></div>
         </div>
-        
-        <button class="button" onclick="subscribe()">Get Started Now</button>
     </div>
 
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="/" class="logo">SaaSy Scribe Pro</a>
+            <a href="/" class="cta-button" style="padding: 0.8rem 2rem;">← Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pricing-hero">
+        <div class="hero-badge">
+            🎯 Join 100+ SaaS Teams Already Winning With Content
+        </div>
+        <h1 class="fade-in">Simple, Transparent Pricing</h1>
+        <p class="fade-in">Get instant access to your AI content strategist. No hidden fees, no contracts. Cancel anytime.</p>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="pricing-grid">
+            <!-- Monthly Plan -->
+            <div class="pricing-card fade-in">
+                <div class="plan-name">Monthly Access</div>
+                <div class="plan-description">Perfect for testing and growing teams</div>
+                
+                <div class="price">$197<span>/month</span></div>
+                
+                <div class="features-list">
+                    <div class="feature-item">Unlimited content outlines</div>
+                    <div class="feature-item">Competitive analysis & intelligence</div>
+                    <div class="feature-item">SEO optimization frameworks</div>
+                    <div class="feature-item">Conversion-focused CTAs</div>
+                    <div class="feature-item">Standard support</div>
+                    <div class="feature-item">All content types included</div>
+                </div>
+                
+                <button class="cta-button" onclick="subscribeMonthly()">
+                    Start Monthly Plan →
+                </button>
+                
+                <div class="guarantee-badge">
+                    ✅ 7-day money-back guarantee
+                </div>
+            </div>
+
+            <!-- Annual Plan (Featured) -->
+            <div class="pricing-card featured fade-in">
+                <div class="plan-badge">MOST POPULAR</div>
+                <div class="plan-name">Annual Plan</div>
+                <div class="plan-description">Best value - save 2 months free</div>
+                
+                <div class="price">$1,977<span>/year</span></div>
+                <div style="color: #10b981; font-weight: 600; margin: -1rem 0 2rem;">Save $387 ($197/month equivalent)</div>
+                
+                <div class="features-list">
+                    <div class="feature-item premium">Everything in Monthly</div>
+                    <div class="feature-item premium">Priority strategy support</div>
+                    <div class="feature-item premium">Custom framework requests</div>
+                    <div class="feature-item premium">Quarterly strategy reviews</div>
+                    <div class="feature-item premium">Early access to new features</div>
+                    <div class="feature-item premium">Dedicated onboarding</div>
+                </div>
+                
+                <button class="cta-button" onclick="subscribeAnnual()" 
+                        style="background: linear-gradient(135deg, #f59e0b 0%, #eab308 100%);">
+                    ⚡ Get 2 Months Free →
+                </button>
+                
+                <div class="guarantee-badge">
+                    ✅ 30-day money-back guarantee
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testimonials fade-in">
+            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Loved by SaaS Teams
+            </h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "This found competitive angles my team would have missed. The ROI was clear in the first week."
+                    </div>
+                    <div class="testimonial-author">— Marketing Director, Series B SaaS</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Saved us 15+ hours per week on content planning. The strategic frameworks are game-changing."
+                    </div>
+                    <div class="testimonial-author">— SaaS Founder, 20-person team</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Finally, an AI that thinks like a senior strategist. Our content quality improved overnight."
+                    </div>
+                    <div class="testimonial-author">— Content Lead, HR Tech Startup</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq-section fade-in">
+            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Frequently Asked Questions
+            </h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">How quickly can I get started?</div>
+                <p>Immediately! After payment, you'll get instant access to the GPT. Most customers create their first strategic outline within 10 minutes.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What if it doesn't work for my business?</div>
+                <p>We offer a 7-day money-back guarantee. If SaaSy Scribe Pro doesn't save you time and improve your content strategy, we'll refund your payment.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do you offer team pricing?</div>
+                <p>Yes! Contact us at support@saasyscribepro.com for team pricing (3+ seats). We offer volume discounts for larger teams.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can I cancel anytime?</div>
+                <p>Absolutely. No contracts, no hidden fees. Cancel your subscription anytime from your account settings.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <div class="logo" style="margin-bottom: 2rem; display: inline-block;">SaaSy Scribe Pro</div>
+            <p style="opacity: 0.8; margin-bottom: 2rem;">Your AI content strategist for SaaS companies</p>
+            <div style="opacity: 0.6;">
+                © 2024 SaaSy Scribe Pro. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
     <script>
-        async function subscribe() {
-    try {
-        const response = await fetch('/api/create-checkout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+        // Simple fade-in animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
         });
-        
-        if (!response.ok) {
-            throw new Error('API response error');
+
+        document.querySelectorAll('.pricing-card, .testimonials, .faq-section').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Payment functions
+        async function subscribeMonthly() {
+            try {
+                const response = await fetch('/api/create-checkout-monthly', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    window.location.href = data.url;
+                } else {
+                    alert('Error starting checkout. Please try again.');
+                }
+            } catch (error) {
+                console.error('Checkout error:', error);
+                alert('Error starting checkout. Please try again.');
+            }
         }
-        
-        const data = await response.json();
-        window.location.href = data.url;
-    } catch (error) {
-        console.error('Checkout error:', error);
-        alert('Error starting checkout. Please try again.');
-    }
-}
+
+        async function subscribeAnnual() {
+            try {
+                const response = await fetch('/api/create-checkout-annual', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    window.location.href = data.url;
+                } else {
+                    alert('Error starting checkout. Please try again.');
+                }
+            } catch (error) {
+                console.error('Checkout error:', error);
+                alert('Error starting checkout. Please try again.');
+            }
+        }
     </script>
 </body>
 </html>
