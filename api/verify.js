@@ -1,35 +1,61 @@
-import { createClient } from '@supabase/supabase-js';
+export default async function handler(request, response) {
+  // Handle CORS
+  response.setHeader('Access-Control-Allow-Origin', '*');
+  response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-);
-
-
-export default async function handler(req, res) {
-  const { key } = req.query;
-
-  if (!key) {
-    return res.status(400).send('MISSING_KEY');
+  if (request.method === 'OPTIONS') {
+    return response.status(200).end();
   }
 
-  // Check license in Supabase
-  const { data, error } = await supabase
-    .from('licenses')
-    .select('*')
-    .eq('license_key', key)
-    .eq('status', 'active')
-    .single();
+  if (request.method === 'GET') {
+    const { key } = request.query;
+    
+    if (!key) {
+      return response.status(400).json({
+        valid: false,
+        message: 'License key is required. Use ?key=YOUR_LICENSE_KEY'
+      });
+    }
 
-  if (error || !data) {
-    return res.status(404).send('INVALID');
+    // Your license validation logic
+    const isValid = await validateLicense(key);
+    
+    return response.status(200).json({
+      valid: isValid,
+      message: isValid ? 'License is valid' : 'Invalid license key',
+      key: key,
+      timestamp: new Date().toISOString()
+    });
   }
 
-  // Update usage count
-  await supabase
-    .from('licenses')
-    .update({ used_count: data.used_count + 1 })
-    .eq('id', data.id);
+  // Handle POST requests too
+  if (request.method === 'POST') {
+    const { key } = request.body;
+    
+    const isValid = await validateLicense(key);
+    
+    return response.status(200).json({
+      valid: isValid,
+      message: isValid ? 'License is valid' : 'Invalid license key'
+    });
+  }
 
-  res.status(200).send('VALID');
+  // Method not allowed
+  return response.status(405).json({
+    error: 'Method not allowed. Use GET or POST.'
+  });
+}
+
+async function validateLicense(key) {
+  // Your actual validation logic here
+  // Example: Check against a database or hardcoded list
+  
+  const validKeys = [
+    'SaaSYPRO-2024-001',
+    'SaaSYPRO-2024-002', 
+    'SaaSYPRO-2024-003'
+  ];
+  
+  return validKeys.includes(key);
 }
