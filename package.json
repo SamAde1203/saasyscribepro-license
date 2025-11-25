@@ -1,0 +1,10 @@
+{
+  "name": "saasyscribepro-license",
+  "version": "1.0.0",
+  "description": "License verification for SaaSy Scribe Pro",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
