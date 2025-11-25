@@ -1,23 +1,13 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "api/verify.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
-    }
+    { "src": "api/verify.js", "use": "@vercel/node" },
+    { "src": "api/create-checkout.js", "use": "@vercel/node" },
+    { "src": "public/**", "use": "@vercel/static" }
   ],
   "routes": [
-    {
-      "src": "/api/verify",
-      "dest": "/api/verify.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/$1"
-    }
+    { "src": "/api/verify", "dest": "/api/verify.js" },
+    { "src": "/api/create-checkout", "dest": "/api/create-checkout.js" },
+    { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
