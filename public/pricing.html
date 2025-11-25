@@ -33,20 +33,25 @@
 
     <script>
         async function subscribe() {
-            try {
-                const response = await fetch('/api/create-checkout', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-                
-                const data = await response.json();
-                window.location.href = data.url;
-            } catch (error) {
-                alert('Error starting checkout. Please try again.');
-            }
+    try {
+        const response = await fetch('/api/create-checkout.js', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        
+        if (!response.ok) {
+            throw new Error('API response error');
         }
+        
+        const data = await response.json();
+        window.location.href = data.url;
+    } catch (error) {
+        console.error('Checkout error:', error);
+        alert('Error starting checkout. Please try again.');
+    }
+}
     </script>
 </body>
 </html>
