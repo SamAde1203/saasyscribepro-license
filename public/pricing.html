@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaaSy Scribe Pro - Pricing</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .pricing-card { border: 1px solid #e1e5e9; border-radius: 12px; padding: 40px; text-align: center; margin: 40px 0; }
+        .price { font-size: 48px; font-weight: bold; color: #0070f3; }
+        .button { background: #0070f3; color: white; padding: 16px 32px; border-radius: 8px; text-decoration: none; display: inline-block; font-weight: bold; }
+        .features { text-align: left; margin: 30px 0; }
+    </style>
+</head>
+<body>
+    <h1>🚀 SaaSy Scribe Pro</h1>
+    <p>Elite AI Content Strategy for SaaS Companies</p>
+    
+    <div class="pricing-card">
+        <h2>Monthly Subscription</h2>
+        <div class="price">$197<span style="font-size: 20px; color: #666;">/month</span></div>
+        
+        <div class="features">
+            <p>✅ Unlimited content outlines with competitive analysis</p>
+            <p>✅ SEO optimization frameworks</p>
+            <p>✅ Conversion-focused CTAs and strategies</p>
+            <p>✅ Priority support</p>
+            <p>✅ Cancel anytime</p>
+        </div>
+        
+        <button class="button" onclick="subscribe()">Get Started Now</button>
+    </div>
+
+    <script>
+        async function subscribe() {
+            try {
+                const response = await fetch('/api/create-checkout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                
+                const data = await response.json();
+                window.location.href = data.url;
+            } catch (error) {
+                alert('Error starting checkout. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>
