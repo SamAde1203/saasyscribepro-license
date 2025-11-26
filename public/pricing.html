@@ -409,7 +409,15 @@
         <h1 class="fade-in">Simple, Transparent Pricing</h1>
         <p class="fade-in">Get instant access to your AI content strategist. No hidden fees, no contracts. Cancel anytime.</p>
     </section>
-
+	
+	<div style="text-align: center; margin: 2rem 0;">
+    <div style="display: inline-flex; gap: 3rem; opacity: 0.7; font-size: 0.9rem; flex-wrap: wrap; justify-content: center;">
+        <div>🔒 Secure Payment</div>
+        <div>⚡ Instant Access</div>
+        <div>✅ Money-Back Guarantee</div>
+        <div>💬 Priority Support</div>
+    </div>
+</div>
     <!-- Pricing Section -->
     <section class="pricing-section">
         <div class="pricing-grid">
@@ -444,8 +452,10 @@
                 <div class="plan-name">Annual Plan</div>
                 <div class="plan-description">Best value - save 2 months free</div>
                 
-                <div class="price">$1,977<span>/year</span></div>
-                <div style="color: #10b981; font-weight: 600; margin: -1rem 0 2rem;">Save $387 ($197/month equivalent)</div>
+                <div class="price">$1,997<span>/year</span></div>
+<div style="color: #10b981; font-weight: 600; margin: -1rem 0 2rem;">
+    Save $367 ($166/month equivalent)
+</div>
                 
                 <div class="features-list">
                     <div class="feature-item premium">Everything in Monthly</div>
@@ -547,44 +557,14 @@
             observer.observe(el);
         });
 
-        // Payment functions
-        async function subscribeMonthly() {
-            try {
-                const response = await fetch('/api/create-checkout-monthly', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                });
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    window.location.href = data.url;
-                } else {
-                    alert('Error starting checkout. Please try again.');
-                }
-            } catch (error) {
-                console.error('Checkout error:', error);
-                alert('Error starting checkout. Please try again.');
-            }
-        }
+        // Simple direct payment functions
+function subscribeMonthly() {
+    window.location.href = "https://buy.stripe.com/bJe28qdInaJw6pG0vI9EI00";
+}
 
-        async function subscribeAnnual() {
-            try {
-                const response = await fetch('/api/create-checkout-annual', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                });
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    window.location.href = data.url;
-                } else {
-                    alert('Error starting checkout. Please try again.');
-                }
-            } catch (error) {
-                console.error('Checkout error:', error);
-                alert('Error starting checkout. Please try again.');
-            }
-        }
+function subscribeAnnual() {
+    window.location.href = "https://buy.stripe.com/8x29AS6fV6tgaFW3HU9EI01";
+}
     </script>
 </body>
 </html>
