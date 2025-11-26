@@ -1,513 +1,525 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <nav class="navbar">
-    <div class="nav-content">
-        <a href="/" class="logo">
-            <img src="/images/logo.png" alt="SaaSy Scribe Pro">
-        </a>
-    </div>
-</nav>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to SaaSy Scribe Pro! 🚀</title>
-    <style>
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #f59e0b;
-            --success: #10b981;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            --neon-glow: 0 0 30px rgba(99, 102, 241, 0.4);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaaSy Scribe Pro | Welcome Aboard 🚀</title>
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --secondary: #f59e0b;
+      --success: #10b981;
+      --dark: #020617;
+      --muted: #64748b;
+      --light: #f8fafc;
+      --gradient: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+      --success-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      --neon-glow: 0 0 30px rgba(79, 70, 229, 0.35);
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-        body {
-            background: var(--light);
-            color: var(--dark);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+    body {
+      background: var(--light);
+      color: var(--dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(45deg, #f8fafc 0%, #e2e8f0 100%);
-        }
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 0.9rem 5%;
+      background: rgba(248,250,252,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(148,163,184,0.26);
+      z-index: 10;
+    }
+    .nav-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .logo-link img {
+      max-width: 140px;
+      height: auto;
+      filter: drop-shadow(0 8px 22px rgba(15,23,42,0.18));
+    }
 
-        .floating-shapes {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(45deg, #f8fafc 0%, #e2e8f0 100%);
+    }
+    .floating-shapes {
+      position: absolute;
+      inset: 0;
+    }
+    .shape {
+      position: absolute;
+      background: var(--success-gradient);
+      border-radius: 999px;
+      opacity: 0.08;
+      animation: float 20s infinite linear;
+    }
+    .confetti {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: var(--secondary);
+      animation: confettiFall 8s infinite linear;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-25px) rotate(180deg); }
+    }
+    @keyframes confettiFall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
 
-        .shape {
-            position: absolute;
-            background: var(--success-gradient);
-            border-radius: 50%;
-            opacity: 0.08;
-            animation: float 20s infinite linear;
-        }
+    /* Success Container */
+    .success-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1.5rem 2rem;
+      position: relative;
+    }
+    .success-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 3.4rem 3rem;
+      box-shadow: 0 34px 80px rgba(15,23,42,0.2);
+      border: 1px solid rgba(148,163,184,0.35);
+      text-align: center;
+      max-width: 640px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .success-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      background: radial-gradient(circle at 0 0, rgba(16,185,129,0.25), transparent 55%);
+      pointer-events: none;
+    }
+    .success-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--success-gradient);
+    }
 
-        .confetti {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: var(--secondary);
-            animation: confettiFall 8s infinite linear;
-        }
+    .success-icon {
+      width: 96px;
+      height: 96px;
+      background: var(--success-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.8rem;
+      animation: bounce 2s infinite;
+      box-shadow: var(--neon-glow);
+    }
+    .success-icon svg {
+      width: 48px;
+      height: 48px;
+      fill: #ffffff;
+    }
+    @keyframes bounce {
+      0%,20%,50%,80%,100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-25px) rotate(180deg); }
-        }
+    .success-title {
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-bottom: 0.9rem;
+      background: var(--success-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.05em;
+    }
+    .success-subtitle {
+      font-size: 1.12rem;
+      color: var(--muted);
+      margin-bottom: 2.4rem;
+      line-height: 1.6;
+    }
 
-        @keyframes confettiFall {
-            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-        }
+    /* Access Box */
+    .access-box {
+      background: rgba(16,185,129,0.05);
+      border: 1px dashed rgba(16,185,129,0.4);
+      border-radius: 16px;
+      padding: 2.1rem 2rem;
+      margin: 2.1rem 0 0.4rem;
+      text-align: left;
+      position: relative;
+      z-index: 1;
+    }
+    .access-step {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.4rem;
+      padding: 0.9rem 0.85rem;
+      background: #ffffff;
+      border-radius: 12px;
+      border-left: 4px solid var(--success);
+    }
+    .access-step:last-child { margin-bottom: 0; }
+    .step-number {
+      background: var(--success);
+      color: white;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin-right: 1.3rem;
+      flex-shrink: 0;
+      font-size: 0.95rem;
+    }
+    .step-content h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--dark);
+    }
+    .step-content p {
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 0.96rem;
+    }
 
-        /* Success Container */
-        .success-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            position: relative;
-        }
+    /* Buttons */
+    .action-buttons {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 0.9rem;
+      margin: 2.4rem 0 1.8rem;
+    }
+    .primary-button,
+    .secondary-button {
+      padding: 1rem 1.6rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+    .primary-button {
+      background: var(--gradient);
+      color: #ffffff;
+      box-shadow: var(--neon-glow);
+      border: none;
+    }
+    .primary-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 60px rgba(79,70,229,0.7);
+    }
+    .secondary-button {
+      background: #ffffff;
+      color: var(--dark);
+      border: 1px solid #e2e8f0;
+    }
+    .secondary-button:hover {
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
 
-        .success-card {
-            background: white;
-            border-radius: 24px;
-            padding: 4rem 3rem;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            text-align: center;
-            max-width: 600px;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
+    /* Welcome Bonus */
+    .welcome-bonus {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border: 1px solid #f59e0b;
+      border-radius: 16px;
+      padding: 1.7rem 1.8rem;
+      margin: 1.8rem 0 1.4rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .bonus-title {
+      color: #92400e;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.6rem;
+    }
+    .bonus-content {
+      color: #92400e;
+      line-height: 1.6;
+      font-size: 0.96rem;
+    }
 
-        .success-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: var(--success-gradient);
-        }
+    /* Support Section */
+    .support-section {
+      background: rgba(99,102,241,0.05);
+      border-radius: 14px;
+      padding: 1.7rem 1.8rem;
+      margin-top: 2.1rem;
+      text-align: center;
+    }
+    .support-title {
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: var(--dark);
+    }
+    .support-email {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .support-email:hover {
+      text-decoration: underline;
+    }
 
-        .success-icon {
-            width: 100px;
-            height: 100px;
-            background: var(--success-gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
-            animation: bounce 2s infinite;
-            box-shadow: var(--neon-glow);
-        }
+    /* Footer */
+    .success-footer {
+      text-align: center;
+      margin-top: 2.6rem;
+      padding-top: 1.7rem;
+      border-top: 1px solid #e2e8f0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
 
-        .success-icon svg {
-            width: 50px;
-            height: 50px;
-            fill: white;
-        }
+    /* Quick tips block */
+    .quick-tips {
+      text-align: left;
+      margin: 1.6rem 0 0.4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .quick-tips-inner {
+      background: #f8fafc;
+      padding: 1.3rem 1.4rem;
+      border-radius: 12px;
+    }
+    .quick-tips ul {
+      color: var(--muted);
+      line-height: 1.6;
+      padding-left: 1.5rem;
+      font-size: 0.95rem;
+    }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .success-container {
+        padding-top: 5.6rem;
+      }
+      .success-card {
+        padding: 2.7rem 1.8rem;
+        margin: 0 0.5rem;
+      }
+      .success-title {
+        font-size: 2.3rem;
+      }
+      .action-buttons {
+        grid-template-columns: 1fr;
+      }
+      .access-step {
+        flex-direction: column;
+        text-align: center;
+      }
+      .step-number {
+        margin-right: 0;
+        margin-bottom: 0.8rem;
+      }
+    }
 
-        .success-title {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: var(--success-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .success-subtitle {
-            font-size: 1.3rem;
-            color: #64748b;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-        }
-
-        /* Access Box */
-        .access-box {
-            background: rgba(16, 185, 129, 0.05);
-            border: 2px dashed rgba(16, 185, 129, 0.3);
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin: 2.5rem 0;
-            text-align: left;
-        }
-
-        .access-step {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: white;
-            border-radius: 12px;
-            border-left: 4px solid var(--success);
-        }
-
-        .step-number {
-            background: var(--success);
-            color: white;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            margin-right: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .step-content h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .step-content p {
-            color: #64748b;
-            line-height: 1.5;
-        }
-
-        .license-key {
-            background: var(--dark);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 1.1rem;
-            margin: 1rem 0;
-            display: inline-block;
-            border: 2px solid var(--primary);
-        }
-
-        /* Action Buttons */
-        .action-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin: 3rem 0 2rem;
-        }
-
-        .primary-button {
-            background: var(--gradient);
-            color: white;
-            padding: 1.2rem 2rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            display: block;
-            text-align: center;
-            box-shadow: var(--neon-glow);
-            border: none;
-            cursor: pointer;
-        }
-
-        .primary-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.4);
-        }
-
-        .secondary-button {
-            background: white;
-            color: var(--dark);
-            padding: 1.2rem 2rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            display: block;
-            text-align: center;
-            border: 2px solid #e2e8f0;
-            cursor: pointer;
-        }
-
-        .secondary-button:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        /* Welcome Bonus */
-        .welcome-bonus {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            border: 2px solid #f59e0b;
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .bonus-title {
-            color: #92400e;
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .bonus-content {
-            color: #92400e;
-            line-height: 1.6;
-        }
-
-        /* Support Section */
-        .support-section {
-            background: rgba(99, 102, 241, 0.05);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-top: 3rem;
-            text-align: center;
-        }
-
-        .support-title {
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .support-email {
-            color: var(--primary);
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 1.1rem;
-        }
-
-        .support-email:hover {
-            text-decoration: underline;
-        }
-
-        /* Footer */
-        .success-footer {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid #e2e8f0;
-            color: #64748b;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .success-card {
-                padding: 3rem 2rem;
-                margin: 1rem;
-            }
-            
-            .success-title {
-                font-size: 2.5rem;
-            }
-            
-            .action-buttons {
-                grid-template-columns: 1fr;
-            }
-            
-            .access-step {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .step-number {
-                margin-right: 0;
-                margin-bottom: 1rem;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.8s ease-out;
-        }
-    </style>
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(26px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      animation: fadeInUp 0.8s ease-out;
+    }
+  </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation">
-        <div class="floating-shapes">
-            <div class="shape" style="width: 300px; height: 300px; top: 10%; left: 5%; animation-delay: 0s;"></div>
-            <div class="shape" style="width: 200px; height: 200px; top: 60%; left: 80%; animation-delay: -5s;"></div>
-            <div class="shape" style="width: 250px; height: 250px; top: 30%; left: 70%; animation-delay: -10s;"></div>
-        </div>
-        <!-- Confetti -->
-        <div id="confetti-container"></div>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-content">
+      <a href="/" class="logo-link">
+        <img src="/images/logo.png" alt="SaaSy Scribe Pro">
+      </a>
     </div>
+  </header>
 
-    <!-- Success Container -->
-    <div class="success-container">
-        <div class="success-card fade-in">
-            <!-- Success Icon -->
-            <div class="success-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                </svg>
-            </div>
-
-            <!-- Main Title -->
-            <h1 class="success-title">Welcome to the Inner Circle! 🎉</h1>
-            <p class="success-subtitle">
-                You're now armed with the same AI content strategist used by top SaaS companies. 
-                Get ready to create content that actually converts.
-            </p>
-
-            <!-- Access Instructions -->
-            <div class="access-box fade-in">
-                <div class="access-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Check Your Email</h3>
-                        <p>We've sent your license key and access instructions to your email address.</p>
-                    </div>
-                </div>
-                
-                <div class="access-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Access Your Strategist</h3>
-                        <p>Click the GPT link in your email or use the button below to get started immediately.</p>
-                    </div>
-                </div>
-                
-                <div class="access-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Create Your First Outline</h3>
-                        <p>Start with "Create an outline for [your topic]" and watch the magic happen.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Welcome Bonus -->
-            <div class="welcome-bonus fade-in">
-                <div class="bonus-title">🎁 Your Welcome Bonus</div>
-                <div class="bonus-content">
-                    As a new member, you get <strong>priority support</strong> and access to our 
-                    <strong>exclusive content strategy templates</strong>. Check your email for the bonus pack!
-                </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="action-buttons">
-                <a href="https://chatgpt.com/g/g-692502214bb48191a865a46d6f52eeb1-saasy-scribe-pro-ai-content-strategy-system
-" class="primary-button">
-                    🚀 Access Your GPT Now
-                </a>
-                <a href="/" class="secondary-button">
-                    ← Return Home
-                </a>
-            </div>
-
-            <!-- Quick Start Tips -->
-            <div style="text-align: left; margin: 2rem 0;">
-                <h3 style="margin-bottom: 1rem; color: var(--dark);">💡 Pro Tip: First-Time User?</h3>
-                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 12px;">
-                    <p style="margin-bottom: 0.5rem;"><strong>Start with these prompts:</strong></p>
-                    <ul style="color: #64748b; line-height: 1.6; padding-left: 1.5rem;">
-                        <li>"Create an outline for [your product] targeting [your audience]"</li>
-                        <li>"Research content opportunities for my SaaS in [your niche]"</li>
-                        <li>"Analyze competitor content gaps for [your main keyword]"</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Support Section -->
-            <div class="support-section fade-in">
-                <div class="support-title">Need help getting started?</div>
-                <p>We're here for you! Email us at <br>
-                <a href="mailto:support@saasyscribepro.com" class="support-email">support@saasyscribepro.com</a></p>
-            </div>
-
-            <!-- Footer -->
-            <div class="success-footer">
-                  <img src="/images/logo-white.png" alt="SaaSy Scribe Pro" style="height: 30px; margin-bottom: 1rem;">
-                <p>You're joining 100+ SaaS teams already winning with content. <br>We're excited to see what you'll create! 🚀</p>
-            </div>
-        </div>
+  <!-- Animated Background -->
+  <div class="bg-animation">
+    <div class="floating-shapes">
+      <div class="shape" style="width: 300px; height: 300px; top: 10%; left: 5%;"></div>
+      <div class="shape" style="width: 200px; height: 200px; top: 60%; left: 80%; animation-delay: -5s;"></div>
+      <div class="shape" style="width: 250px; height: 250px; top: 30%; left: 70%; animation-delay: -10s;"></div>
     </div>
+    <div id="confetti-container"></div>
+  </div>
 
-    <script>
-        // Create confetti
-        function createConfetti() {
-            const container = document.getElementById('confetti-container');
-            const colors = ['#6366f1', '#f59e0b', '#10b981', '#8b5cf6', '#ec4899'];
-            
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.animationDelay = Math.random() * 8 + 's';
-                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.width = Math.random() * 10 + 8 + 'px';
-                confetti.style.height = Math.random() * 10 + 8 + 'px';
-                container.appendChild(confetti);
-            }
-        }
+  <!-- Success Container -->
+  <main class="success-container">
+    <section class="success-card fade-in" aria-labelledby="welcome-title">
+      <div class="success-bar"></div>
 
-        // Fade in animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                }
-            });
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+        </svg>
+      </div>
+
+      <h1 id="welcome-title" class="success-title">Welcome to the Inner Circle 🎉</h1>
+      <p class="success-subtitle">
+        You now have the same AI content strategist used by top SaaS teams. 
+        In a few minutes, you’ll be generating outlines that are ready to brief, edit, and ship.
+      </p>
+
+      <!-- Access Instructions -->
+      <div class="access-box fade-in">
+        <div class="access-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Check your email</h3>
+            <p>Look for a message from SaaSy Scribe Pro with your GPT access link and license details.</p>
+          </div>
+        </div>
+
+        <div class="access-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Access your strategist</h3>
+            <p>Open the GPT link in your browser and pin it. This becomes your always‑on content strategy workspace.</p>
+          </div>
+        </div>
+
+        <div class="access-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Create your first outline</h3>
+            <p>Ask: “Create an outline for [your product] targeting [your audience]” and refine from there.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Welcome Bonus -->
+      <div class="welcome-bonus fade-in">
+        <div class="bonus-title">🎁 Your welcome bonus</div>
+        <div class="bonus-content">
+          You also get <strong>priority support</strong> plus our
+          <strong>exclusive content strategy templates</strong>. 
+          Check your inbox for the bonus pack link so you can plug them into your next sprint.
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <a href="https://chatgpt.com/g/g-692502214bb48191a865a46d6f52eeb1-saasy-scribe-pro-ai-content-strategy-system" class="primary-button">
+          🚀 Access your GPT now
+        </a>
+        <a href="/" class="secondary-button">
+          ← Return home
+        </a>
+      </div>
+
+      <!-- Quick Start Tips -->
+      <div class="quick-tips">
+        <h3 style="margin-bottom:0.8rem;color:var(--dark);">💡 Pro tip: first‑time prompts</h3>
+        <div class="quick-tips-inner">
+          <p style="margin-bottom:0.5rem;"><strong>Try one of these to get immediate value:</strong></p>
+          <ul>
+            <li>“Create an outline for [your product] targeting [your ideal customer profile].”</li>
+            <li>“Map content opportunities for my SaaS in [your niche] over the next 90 days.”</li>
+            <li>“Analyze competitor content gaps for [your main keyword] and suggest angles we can own.”</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Support Section -->
+      <div class="support-section fade-in">
+        <div class="support-title">Need help getting started?</div>
+        <p>
+          Reach the team any time at
+          <br>
+          <a href="mailto:support@saasyscribepro.com" class="support-email">
+            support@saasyscribepro.com
+          </a>
+        </p>
+      </div>
+
+      <!-- Footer -->
+      <div class="success-footer">
+        <img src="/images/logo-white.png" alt="SaaSy Scribe Pro" style="height:28px;margin-bottom:0.6rem;">
+        <p>You're joining 100+ SaaS teams already winning with strategic content. We’re excited to see what you ship next 🚀</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function createConfetti() {
+      const container = document.getElementById('confetti-container');
+      const colors = ['#6366f1', '#f59e0b', '#10b981', '#8b5cf6', '#ec4899'];
+
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.animationDelay = Math.random() * 8 + 's';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        const size = Math.random() * 10 + 8;
+        confetti.style.width = size + 'px';
+        confetti.style.height = size + 'px';
+        container.appendChild(confetti);
+      }
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('fade-in');
+      });
+    });
+
+    document.querySelectorAll('.access-box, .welcome-bonus, .support-section')
+      .forEach(el => observer.observe(el));
+
+    document.addEventListener('DOMContentLoaded', () => {
+      createConfetti();
+      setTimeout(() => {
+        document.querySelectorAll('.confetti').forEach(el => {
+          el.style.animationPlayState = 'running';
         });
-
-        document.querySelectorAll('.access-box, .welcome-bonus, .support-section').forEach((el) => {
-            observer.observe(el);
-        });
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            createConfetti();
-            
-            // Add slight delay to confetti for dramatic effect
-            setTimeout(() => {
-                document.querySelectorAll('.confetti').forEach(confetti => {
-                    confetti.style.animationPlayState = 'running';
-                });
-            }, 500);
-        });
-    </script>
+      }, 500);
+    });
+  </script>
 </body>
 </html>
