@@ -4,6 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SaaSy Scribe Pro | AI Content Strategy for SaaS</title>
+
+  <!-- Plausible analytics -->
+  <script async src="https://plausible.io/js/pa-ZaCBrpoSfMI4ch4pKuM-G.js"></script>
+  <script>
+    window.plausible = window.plausible || function () {
+      (plausible.q = plausible.q || []).push(arguments)
+    };
+    plausible.init = plausible.init || function (opts) {
+      plausible.o = opts || {};
+    };
+    plausible.init();
+  </script>
+
   <style>
     :root {
       --primary: #6366f1;
@@ -245,6 +258,151 @@
       color: var(--primary);
       font-weight: 600;
       margin-bottom: 0.4rem;
+    }
+
+    /* Live Demo */
+    .live-demo {
+      padding: 5rem 5% 5.5rem;
+      background: #ffffff;
+    }
+    .live-demo-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0,1.1fr) minmax(0,1.1fr);
+      gap: 2.8rem;
+      align-items: flex-start;
+    }
+    @media (max-width: 960px) {
+      .live-demo-inner {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .live-demo-copy h2 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+    .live-demo-copy p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin-bottom: 1.4rem;
+    }
+    .live-demo-copy ul {
+      list-style: none;
+      padding-left: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+    .live-demo-copy li::before {
+      content: "• ";
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .live-demo-panel {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.8rem 1.8rem 1.6rem;
+      box-shadow: 0 20px 60px rgba(15,23,42,0.12);
+      border: 1px solid rgba(226,232,240,0.95);
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    .demo-label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 0.75rem;
+    }
+    .demo-input {
+      margin-top: 0.3rem;
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid rgba(148,163,184,0.7);
+      font-size: 0.95rem;
+    }
+    .demo-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(99,102,241,0.5);
+    }
+
+    .demo-button {
+      margin-top: 0.8rem;
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--gradient);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.98rem;
+      cursor: pointer;
+      box-shadow: var(--neon-glow);
+      transition: transform 0.18s ease, box-shadow 0.2s ease, filter 0.18s ease;
+    }
+    .demo-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 60px rgba(79,70,229,0.7);
+      filter: brightness(1.03);
+    }
+    .demo-note {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .demo-output {
+      border-radius: 14px;
+      border: 1px solid rgba(226,232,240,0.9);
+      background: #f9fafb;
+      padding: 1rem;
+    }
+    .demo-output-header {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+    .demo-output-text {
+      background: #020617;
+      color: #e5e7eb;
+      font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.85rem;
+      border-radius: 10px;
+      padding: 0.9rem;
+      max-height: 260px;
+      overflow: auto;
+      white-space: pre-wrap;
+    }
+    .demo-copy-btn {
+      margin-top: 0.75rem;
+      width: 100%;
+      padding: 0.75rem 1.3rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.9);
+      background: #ffffff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .demo-copy-btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+    .demo-status {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
     }
 
     /* Demo Section */
@@ -497,150 +655,6 @@
     .fade-in {
       animation: fadeInUp 0.8s ease-out both;
     }
-	.live-demo {
-  padding: 5rem 5% 5.5rem;
-  background: #ffffff;
-}
-.live-demo-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0,1.1fr) minmax(0,1.1fr);
-  gap: 2.8rem;
-  align-items: flex-start;
-}
-@media (max-width: 960px) {
-  .live-demo-inner {
-    grid-template-columns: minmax(0,1fr);
-  }
-}
-
-.live-demo-copy h2 {
-  font-size: 2.1rem;
-  font-weight: 800;
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 1rem;
-}
-.live-demo-copy p {
-  color: var(--muted);
-  font-size: 0.98rem;
-  line-height: 1.6;
-  margin-bottom: 1.4rem;
-}
-.live-demo-copy ul {
-  list-style: none;
-  padding-left: 0;
-  color: var(--muted);
-  font-size: 0.96rem;
-}
-.live-demo-copy li::before {
-  content: "• ";
-  color: var(--primary);
-  font-weight: 700;
-}
-
-.live-demo-panel {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 1.8rem 1.8rem 1.6rem;
-  box-shadow: 0 20px 60px rgba(15,23,42,0.12);
-  border: 1px solid rgba(226,232,240,0.95);
-  display: grid;
-  gap: 1.4rem;
-}
-
-.demo-label {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--dark);
-  margin-bottom: 0.75rem;
-}
-.demo-input {
-  margin-top: 0.3rem;
-  width: 100%;
-  padding: 0.75rem 0.9rem;
-  border-radius: 10px;
-  border: 1px solid rgba(148,163,184,0.7);
-  font-size: 0.95rem;
-}
-.demo-input:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 1px rgba(99,102,241,0.5);
-}
-
-.demo-button {
-  margin-top: 0.8rem;
-  width: 100%;
-  padding: 0.9rem 1.5rem;
-  border-radius: 999px;
-  border: none;
-  background: var(--gradient);
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 0.98rem;
-  cursor: pointer;
-  box-shadow: var(--neon-glow);
-  transition: transform 0.18s ease, box-shadow 0.2s ease, filter 0.18s ease;
-}
-.demo-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 20px 60px rgba(79,70,229,0.7);
-  filter: brightness(1.03);
-}
-.demo-note {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-
-.demo-output {
-  border-radius: 14px;
-  border: 1px solid rgba(226,232,240,0.9);
-  background: #f9fafb;
-  padding: 1rem;
-}
-.demo-output-header {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--dark);
-  margin-bottom: 0.5rem;
-}
-.demo-output-text {
-  background: #020617;
-  color: #e5e7eb;
-  font-family: "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.85rem;
-  border-radius: 10px;
-  padding: 0.9rem;
-  max-height: 260px;
-  overflow: auto;
-  white-space: pre-wrap;
-}
-.demo-copy-btn {
-  margin-top: 0.75rem;
-  width: 100%;
-  padding: 0.75rem 1.3rem;
-  border-radius: 999px;
-  border: 1px solid rgba(148,163,184,0.9);
-  background: #ffffff;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
-.demo-copy-btn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
-.demo-status {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-
   </style>
 </head>
 <body>
@@ -677,10 +691,13 @@
           Stop publishing generic AI content. SaaSy Scribe Pro gives you competitor-aware outlines, strategic angles, and revenue-focused content architectures in minutes.
         </p>
         <div class="hero-actions">
-  <a href="#live-demo" class="cta-primary">Try a live strategy demo →</a>
-  <a href="#demos" class="cta-secondary">Preview real strategy outputs</a>
-</div>
-
+          <a href="#live-demo" class="cta-primary" onclick="track('hero_demo_click')">
+            Try a live strategy demo →
+          </a>
+          <a href="#demos" class="cta-secondary">
+            Preview real strategy outputs
+          </a>
+        </div>
         <div class="hero-meta">
           <span>Built specifically for B2B & SaaS</span>
           <span>Optimized for SEO + revenue</span>
@@ -703,61 +720,62 @@
       </div>
     </div>
   </section>
-<!-- Demo Section: place this under your hero on index.html -->
-<section class="live-demo" id="live-demo">
-  <div class="live-demo-inner">
-    <div class="live-demo-copy">
-      <h2>Try your first strategy brief in 30 seconds</h2>
-      <p>Fill in a few details and see the exact prompt SaaSy Scribe Pro will use to generate a strategic outline not generic AI fluff.</p>
-      <ul>
-        <li>Tailored to your product and ICP.</li>
-        <li>Includes competitive angle + outline.</li>
-        <li>Ready to paste straight into the GPT.</li>
-      </ul>
-    </div>
 
-    <div class="live-demo-panel">
-      <form id="demo-form">
-        <label class="demo-label">
-          Your product
-          <input type="text" id="demo-product" class="demo-input"
-                 placeholder="e.g. B2B analytics platform for SaaS finance teams" required>
-        </label>
+  <!-- Live Demo Section -->
+  <section class="live-demo" id="live-demo">
+    <div class="live-demo-inner">
+      <div class="live-demo-copy">
+        <h2>Try your first strategy brief in 30 seconds</h2>
+        <p>Fill in a few details and see the exact prompt SaaSy Scribe Pro will use to generate a strategic outline not generic AI fluff.</p>
+        <ul>
+          <li>Tailored to your product and ICP.</li>
+          <li>Includes competitive angle + outline.</li>
+          <li>Ready to paste straight into the GPT.</li>
+        </ul>
+      </div>
 
-        <label class="demo-label">
-          Target audience
-          <input type="text" id="demo-audience" class="demo-input"
-                 placeholder="e.g. SaaS CMOs at Series A–C companies" required>
-        </label>
+      <div class="live-demo-panel">
+        <form id="demo-form">
+          <label class="demo-label">
+            Your product
+            <input type="text" id="demo-product" class="demo-input"
+                   placeholder="e.g. B2B analytics platform for SaaS finance teams" required>
+          </label>
 
-        <label class="demo-label">
-          Main topic or angle
-          <input type="text" id="demo-topic" class="demo-input"
-                 placeholder="e.g. SaaS pricing page strategy" required>
-        </label>
+          <label class="demo-label">
+            Target audience
+            <input type="text" id="demo-audience" class="demo-input"
+                   placeholder="e.g. SaaS CMOs at Series A–C companies" required>
+          </label>
 
-        <button type="submit" class="demo-button">
-          ✨ Generate strategy prompt
-        </button>
+          <label class="demo-label">
+            Main topic or angle
+            <input type="text" id="demo-topic" class="demo-input"
+                   placeholder="e.g. SaaS pricing page strategy" required>
+          </label>
 
-        <p class="demo-note">We won't send this anywhere yet—this just creates an optimized prompt for you.</p>
-      </form>
+          <button type="submit" class="demo-button">
+            ✨ Generate strategy prompt
+          </button>
 
-      <div class="demo-output">
-        <div class="demo-output-header">
-          Preview: prompt for SaaSy Scribe Pro
-        </div>
-        <pre id="demo-output-text" class="demo-output-text">
+          <p class="demo-note">We won't send this anywhere yet this just creates an optimized prompt for you.</p>
+        </form>
+
+        <div class="demo-output">
+          <div class="demo-output-header">
+            Preview: prompt for SaaSy Scribe Pro
+          </div>
+          <pre id="demo-output-text" class="demo-output-text">
 Describe your product, audience, and topic to generate a strategic outline…
-        </pre>
-        <button id="demo-copy-run" class="demo-copy-btn" disabled>
-          Copy prompt & open SaaSy Scribe Pro GPT
-        </button>
-        <p id="demo-copy-status" class="demo-status"></p>
+          </pre>
+          <button id="demo-copy-run" class="demo-copy-btn" disabled>
+            Copy prompt & open SaaSy Scribe Pro GPT
+          </button>
+          <p id="demo-copy-status" class="demo-status"></p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- Demo Section -->
   <section class="demo-section" id="demos">
@@ -848,10 +866,14 @@ Describe your product, audience, and topic to generate a strategic outline…
         </div>
 
         <div class="plan-ctas">
-          <a href="https://buy.stripe.com/bJe28qdInaJw6pG0vI9EI00" class="plan-monthly">
+          <a href="https://buy.stripe.com/bJe28qdInaJw6pG0vI9EI00"
+             class="plan-monthly"
+             onclick="track('pricing_monthly_click')">
             Monthly – $197/mo ›
           </a>
-          <a href="https://buy.stripe.com/8x29AS6fV6tgaFW3HU9EI01" class="plan-annual">
+          <a href="https://buy.stripe.com/8x29AS6fV6tgaFW3HU9EI01"
+             class="plan-annual"
+             onclick="track('pricing_annual_click')">
             Annual – $1,997/yr (save vs monthly) ›
           </a>
         </div>
@@ -890,6 +912,13 @@ Describe your product, audience, and topic to generate a strategic outline…
   </footer>
 
   <script>
+    // Plausible helper
+    function track(eventName) {
+      if (window.plausible) {
+        window.plausible(eventName);
+      }
+    }
+
     // Fade-in on scroll
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -900,26 +929,29 @@ Describe your product, audience, and topic to generate a strategic outline…
     document.querySelectorAll('.hero-text, .hero-visual, .section-header, .demo-card, .pricing-shell, .faq-inner')
       .forEach(el => observer.observe(el));
   </script>
+
   <script>
-  const demoForm = document.getElementById('demo-form');
-  const productEl = document.getElementById('demo-product');
-  const audienceEl = document.getElementById('demo-audience');
-  const topicEl = document.getElementById('demo-topic');
-  const outputEl = document.getElementById('demo-output-text');
-  const copyRunBtn = document.getElementById('demo-copy-run');
-  const statusEl = document.getElementById('demo-copy-status');
+    const demoForm = document.getElementById('demo-form');
+    const productEl = document.getElementById('demo-product');
+    const audienceEl = document.getElementById('demo-audience');
+    const topicEl = document.getElementById('demo-topic');
+    const outputEl = document.getElementById('demo-output-text');
+    const copyRunBtn = document.getElementById('demo-copy-run');
+    const statusEl = document.getElementById('demo-copy-status');
 
-  const GPT_URL = "https://chatgpt.com/g/g-692502214bb48191a865a46d6f52eeb1-saasy-scribe-pro-ai-content-strategy-system";
+    const GPT_URL = "https://chatgpt.com/g/g-692502214bb48191a865a46d6f52eeb1-saasy-scribe-pro-ai-content-strategy-system";
 
-  demoForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const product = productEl.value.trim();
-    const audience = audienceEl.value.trim();
-    const topic = topicEl.value.trim();
+    demoForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const product = productEl.value.trim();
+      const audience = audienceEl.value.trim();
+      const topic = topicEl.value.trim();
 
-    if (!product || !audience || !topic) return;
+      if (!product || !audience || !topic) return;
 
-    const prompt =
+      track('demo_prompt_generated');
+
+      const prompt =
 `You are SaaSy Scribe Pro, an AI content strategist for SaaS.
 
 Product:
@@ -936,25 +968,26 @@ Generate:
 2) A detailed outline (H2/H3) optimized for SEO and revenue (signups, demos, or expansion).
 3) Suggested CTAs and distribution ideas at the end.`;
 
-    outputEl.textContent = prompt;
-    copyRunBtn.disabled = false;
-    statusEl.textContent = "";
-  });
+      outputEl.textContent = prompt;
+      copyRunBtn.disabled = false;
+      statusEl.textContent = "";
+    });
 
-  copyRunBtn.addEventListener('click', async function () {
-    const prompt = outputEl.textContent.trim();
-    if (!prompt) return;
+    copyRunBtn.addEventListener('click', async function () {
+      const prompt = outputEl.textContent.trim();
+      if (!prompt) return;
 
-    try {
-      await navigator.clipboard.writeText(prompt);
-      statusEl.textContent = "Prompt copied to clipboard. Paste it into SaaSy Scribe Pro in the new tab.";
-    } catch (err) {
-      statusEl.textContent = "Prompt ready. If copy failed, select and copy it manually.";
-    }
+      track('demo_open_gpt');
 
-    window.open(GPT_URL, "_blank", "noopener,noreferrer");
-  });
-</script>
+      try {
+        await navigator.clipboard.writeText(prompt);
+        statusEl.textContent = "Prompt copied to clipboard. Paste it into SaaSy Scribe Pro in the new tab.";
+      } catch (err) {
+        statusEl.textContent = "Prompt ready. If copy failed, select and copy it manually.";
+      }
 
+      window.open(GPT_URL, "_blank", "noopener,noreferrer");
+    });
+  </script>
 </body>
 </html>
