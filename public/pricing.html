@@ -529,7 +529,7 @@
 
       <div class="price">$697<span> one-time</span></div>
       <p style="font-size:0.92rem; color:#0f172a; margin:0.6rem 0 1.4rem; font-weight:600;">
-        <span id="seat-counter">112/150 claimed</span> • Limited availability
+         <span id="seat-counter">1/150 claimed</span> • Limited availability
       </p>
 
       <div class="features-list">
@@ -740,5 +740,26 @@
     // Seat counter (update manually or later automate)
     document.getElementById('seat-counter').textContent = "112/150 claimed";
   </script>
+  <script>
+  // Update seat counter dynamically
+  document.addEventListener('DOMContentLoaded', () => {
+    const counterEl = document.getElementById('seat-counter');
+    if (!counterEl) return;
+
+    fetch('/api/seat-count')
+      .then(res => res.json())
+      .then(data => {
+        if (data.claimed >= data.total) {
+          counterEl.innerHTML = '<span style="color:#ef4444">SOLD OUT</span>';
+        } else {
+          counterEl.textContent = `${data.claimed}/${data.total} claimed`;
+        }
+      })
+      .catch(() => {
+        // Fallback if API fails (e.g., during local dev)
+        counterEl.textContent = "1/150 claimed";
+      });
+  });
+</script>
 </body>
 </html>
