@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "functions": {
-    "api/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  "builds": [
+    { "src": "api/webhook.js", "use": "@vercel/node@3.2.8" },
+    { "src": "api/check-access-elite.js", "use": "@vercel/node@3.2.8" },
+    { "src": "api/check-access-pro.js", "use": "@vercel/node@3.2.8" },
+    { "src": "/public/**", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/api/webhook", "dest": "/api/webhook.js" },
+    { "src": "/api/check-access-elite", "dest": "/api/check-access-elite.js" },
+    { "src": "/api/check-access-pro", "dest": "/api/check-access-pro.js" },
+    { "src": "/(.*)", "dest": "/public/$1" }
+  ]
 }
