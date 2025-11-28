@@ -847,43 +847,67 @@ Describe your product, audience, and topic to generate a strategic outline…
     </div>
   </section>
 
-  <!-- Pricing Section -->
-  <section class="pricing-section" id="pricing">
-    <div class="pricing-shell fade-in">
-      <h2>Start creating better content today</h2>
-      <p>Join SaaS founders and marketing teams already saving 10+ hours per week on strategy and outlines.</p>
+   <!-- Pricing Section -->
+<section class="pricing-section" id="pricing">
+  <div class="pricing-shell fade-in">
+    <h2>Choose your plan</h2>
+    <p>Both options include full access to strategic frameworks, Notion templates, and priority support.</p>
 
-      <div class="pricing-card">
-        <h3>SaaSy Scribe Pro</h3>
-        <div class="price">$197<span>/month</span></div>
+    <!-- ELITE Card -->
+    <div class="pricing-card" style="margin-bottom: 2.4rem; background: rgba(15,23,42,0.28);">
+      <h3>SaaSy Scribe ELITE – Founder Bundle</h3>
+      <div class="price">$697<span> one-time</span></div>
+      <p style="margin: 0.6rem 0 1.4rem; opacity: 0.95; font-size: 0.95rem;">
+        <strong>Limited to 150 founders</strong> • <span id="seat-counter">112/150 claimed</span>
+      </p>
 
-        <div class="features-list">
-          <div class="feature-item">Unlimited outlines with embedded competitive intelligence</div>
-          <div class="feature-item">SEO‑ready structures using proven frameworks</div>
-          <div class="feature-item">Strategic angles focused on pipeline and ARR, not vanity metrics</div>
-          <div class="feature-item">24/7 access to your AI content strategist</div>
-          <div class="feature-item">Priority support and new strategy frameworks as they ship</div>
-        </div>
-
-        <div class="plan-ctas">
-          <a href="https://buy.stripe.com/bJe28qdInaJw6pG0vI9EI00"
-             class="plan-monthly"
-             onclick="track('pricing_monthly_click')">
-            Monthly – $197/mo ›
-          </a>
-          <a href="https://buy.stripe.com/8x29AS6fV6tgaFW3HU9EI01"
-             class="plan-annual"
-             onclick="track('pricing_annual_click')">
-            Annual – $1,997/yr (save vs monthly) ›
-          </a>
-        </div>
-
-        <p style="margin-top:1.4rem;opacity:0.9;font-size:0.9rem;">
-          ✅ 7‑day money‑back guarantee • Cancel anytime
-        </p>
+      <div class="features-list">
+        <div class="feature-item">Complete 3,500+ word MOFU pillar (2025 framework)</div>
+        <div class="feature-item">Customer Retention Playbook + CFO-ready metrics</div>
+        <div class="feature-item">Notion template: Content Efficiency Flywheel™</div>
+        <div class="feature-item">Lifetime access + 12 months of updates</div>
+        <div class="feature-item">One-time payment – no recurring fees</div>
       </div>
+
+      <a href="https://buy.stripe.com/14A4gy8o32d0cO4a6i9EI03"
+         class="cta-primary" style="display: inline-block; width: auto; padding: 0.85rem 1.8rem; margin-top: 1rem;"
+         onclick="track('pricing_elite_click')">
+        Get Founding Access – $697 →
+      </a>
     </div>
-  </section>
+
+    <!-- PRO Card -->
+    <div class="pricing-card">
+      <h3>SaaSy Scribe Pro</h3>
+      <div class="price">$197<span>/month</span></div>
+
+      <div class="features-list">
+        <div class="feature-item">Unlimited AI-generated strategic outlines</div>
+        <div class="feature-item">Continuous access to new frameworks</div>
+        <div class="feature-item">24/7 AI content strategist (GPT)</div>
+        <div class="feature-item">SEO-ready structures with competitive angles</div>
+        <div class="feature-item">Cancel anytime</div>
+      </div>
+
+      <div class="plan-ctas">
+        <a href="https://buy.stripe.com/bJe28qdInaJw6pG0vI9EI00"
+           class="plan-monthly"
+           onclick="track('pricing_monthly_click')">
+          Monthly – $197/mo ›
+        </a>
+        <a href="https://buy.stripe.com/8x29AS6fV6tgaFW3HU9EI01"
+           class="plan-annual"
+           onclick="track('pricing_annual_click')">
+          Annual – $1,997/yr ›
+        </a>
+      </div>
+
+      <p style="margin-top:1.4rem;opacity:0.9;font-size:0.9rem;">
+        ✅ 7-day money-back guarantee
+      </p>
+    </div>
+  </div>
+</section>
 
   <!-- FAQ Slice -->
   <section class="faq-slice">
@@ -989,5 +1013,22 @@ Generate:
       window.open(GPT_URL, "_blank", "noopener,noreferrer");
     });
   </script>
+  
+  
+ <script>
+// Simple seat counter (static for now — update manually or via backend later)
+document.addEventListener('DOMContentLoaded', () => {
+  // In the future, this could fetch from your Gist or Vercel endpoint
+  const eliteEmails = 112; // ← Update this manually or connect to API
+  const totalSeats = 150;
+  const counterEl = document.getElementById('seat-counter');
+  if (counterEl) {
+    counterEl.textContent = `${eliteEmails}/${totalSeats} claimed`;
+    if (eliteEmails >= totalSeats) {
+      counterEl.innerHTML = '<span style="color:#ef4444">SOLD OUT</span>';
+    }
+  }
+});
+</script>
 </body>
 </html>
