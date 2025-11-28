@@ -519,87 +519,147 @@
   </section>
 
   <!-- Pricing -->
-  <section class="pricing-section">
-    <div class="pricing-grid">
-      <!-- Monthly -->
-      <article class="pricing-card fade-in">
-        <h2 class="plan-name">Monthly Access</h2>
-        <p class="plan-description">Perfect for testing the system or supporting a lean marketing team.</p>
+<section class="pricing-section">
+  <div class="pricing-grid">
+    <!-- ELITE: Founding Tier -->
+    <article class="pricing-card fade-in">
+      <div class="plan-badge">Founding Tier</div>
+      <h2 class="plan-name">SaaSy Scribe ELITE</h2>
+      <p class="plan-description">Lifetime access to the complete 2025 founder system — one-time payment.</p>
 
-        <div class="price">$197<span>/month</span></div>
+      <div class="price">$697<span> one-time</span></div>
+      <p style="font-size:0.92rem; color:#0f172a; margin:0.6rem 0 1.4rem; font-weight:600;">
+        <span id="seat-counter">112/150 claimed</span> • Limited availability
+      </p>
 
-        <div class="features-list">
-          <div class="feature-item">
-            <div class="feature-icon">✓</div>
-            <span>Unlimited AI-generated content outlines</span>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">✓</div>
-            <span>Competitive research baked into every outline</span>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">✓</div>
-            <span>SEO-optimized structures using proven playbooks</span>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">✓</div>
-            <span>Conversion-focused CTAs and offer angles</span>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">✓</div>
-            <span>Standard email support</span>
-          </div>
+      <div class="features-list">
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>3,500+ word MOFU pillar (2025 framework)</span>
         </div>
-
-        <button class="cta-button-main secondary" onclick="subscribeMonthly()">
-          Start Monthly Plan →
-        </button>
-        <p class="guarantee-badge">✅ 7-day money-back guarantee. Cancel anytime.</p>
-      </article>
-
-      <!-- Annual -->
-      <article class="pricing-card featured fade-in">
-        <div class="plan-badge">Most popular</div>
-        <h2 class="plan-name">Annual Plan</h2>
-        <p class="plan-description">For teams ready to make strategic content their unfair advantage.</p>
-
-        <div class="price">$1,997<span>/year</span></div>
-        <div class="price-note">Save $367 – works out to just $166/month.</div>
-
-        <div class="features-list">
-          <div class="feature-item premium">
-            <div class="feature-icon">⚡</div>
-            <span>Everything in Monthly, unlocked for the full year</span>
-          </div>
-          <div class="feature-item premium">
-            <div class="feature-icon">⚡</div>
-            <span>Priority strategy support via email</span>
-          </div>
-          <div class="feature-item premium">
-            <div class="feature-icon">⚡</div>
-            <span>Custom framework & prompt requests</span>
-          </div>
-          <div class="feature-item premium">
-            <div class="feature-icon">⚡</div>
-            <span>Quarterly content strategy “refresh” suggestions</span>
-          </div>
-          <div class="feature-item premium">
-            <div class="feature-icon">⚡</div>
-            <span>Early access to new playbooks and features</span>
-          </div>
-          <div class="feature-item premium">
-            <div class="feature-icon">⚡</div>
-            <span>White-glove onboarding for your team</span>
-          </div>
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>Customer Retention Playbook + CFO metrics</span>
         </div>
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>Notion template: Content Efficiency Flywheel™</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>Lifetime access + 12 months of updates</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>One-time payment – no recurring fees</span>
+        </div>
+      </div>
 
-        <button class="cta-button-main" onclick="subscribeAnnual()">
-          ⚡ Get Annual & Save 2 Months →
-        </button>
-        <p class="guarantee-badge">✅ 30-day money-back guarantee. No questions asked.</p>
-      </article>
-    </div>
+      <button class="cta-button-main secondary" onclick="buyEliteFounding()">
+        Get Founding Access →
+      </button>
+      <p class="guarantee-badge">✅ Instant access • No subscription</p>
+    </article>
 
+    <!-- ELITE: Standard Tier -->
+    <article class="pricing-card fade-in">
+      <h2 class="plan-name">SaaSy Scribe ELITE</h2>
+      <p class="plan-description">Full Founder Bundle — available after founding tier closes.</p>
+
+      <div class="price">$997<span> one-time</span></div>
+      <p style="font-size:0.92rem; color:#0f172a; margin:0.6rem 0 1.4rem; font-weight:600;">
+        Always available
+      </p>
+
+      <div class="features-list">
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>Everything in Founding Tier</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>No seat limit</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>Same deliverables, no scarcity</span>
+        </div>
+      </div>
+
+      <button class="cta-button-main secondary" onclick="buyEliteStandard()">
+        Get Standard Access →
+      </button>
+      <p class="guarantee-badge">✅ Instant access • No subscription</p>
+    </article>
+
+    <!-- PRO: Monthly -->
+    <article class="pricing-card fade-in">
+      <h2 class="plan-name">SaaSy Scribe Pro</h2>
+      <p class="plan-description">Flexible access for teams testing or scaling month-to-month.</p>
+
+      <div class="price">$197<span>/month</span></div>
+
+      <div class="features-list">
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>Unlimited AI-generated strategic outlines</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>Competitive angles + conversion frameworks</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>24/7 GPT access with live verification</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✓</div>
+          <span>Standard email support</span>
+        </div>
+      </div>
+
+      <button class="cta-button-main secondary" onclick="subscribeMonthly()">
+        Start Monthly Plan →
+      </button>
+      <p class="guarantee-badge">✅ 7-day guarantee • Cancel anytime</p>
+    </article>
+
+    <!-- PRO: Annual (Featured) -->
+    <article class="pricing-card featured fade-in">
+      <div class="plan-badge">Most popular</div>
+      <h2 class="plan-name">SaaSy Scribe Pro</h2>
+      <p class="plan-description">Best value for committed teams — save $367/year.</p>
+
+      <div class="price">$1,997<span>/year</span></div>
+      <div class="price-note">($166/month) • Save 18%</div>
+
+      <div class="features-list">
+        <div class="feature-item premium">
+          <div class="feature-icon">⚡</div>
+          <span>Everything in Monthly, unlocked for the year</span>
+        </div>
+        <div class="feature-item premium">
+          <div class="feature-icon">⚡</div>
+          <span>Priority support + custom framework requests</span>
+        </div>
+        <div class="feature-item premium">
+          <div class="feature-icon">⚡</div>
+          <span>Early access to new playbooks</span>
+        </div>
+        <div class="feature-item premium">
+          <div class="feature-icon">⚡</div>
+          <span>30-day money-back guarantee</span>
+        </div>
+      </div>
+
+      <button class="cta-button-main" onclick="subscribeAnnual()">
+        ⚡ Get Annual & Save →
+      </button>
+      <p class="guarantee-badge">✅ Best value • Long-term access</p>
+    </article>
+  </div>
+
+ </section>
     <!-- Testimonials -->
     <section class="testimonials fade-in">
       <h2>SaaS teams are already winning with SaaSy Scribe Pro</h2>
@@ -662,24 +722,23 @@
     </div>
   </footer>
 
+  <!-- JS Functions -->
   <script>
-    // Scroll-triggered fade-in
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('fade-in');
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll('.pricing-card, .testimonials, .faq-section')
-      .forEach(el => observer.observe(el));
-
-    // Stripe checkout
+    function buyEliteFounding() {
+      window.location.href = "https://buy.stripe.com/14A4gy8o32d0cO4a6i9EI03";
+    }
+    function buyEliteStandard() {
+      window.location.href = "https://buy.stripe.com/4gM8wO7jZ4l83dua6i9EI04";
+    }
     function subscribeMonthly() {
       window.location.href = "https://buy.stripe.com/bJe28qdInaJw6pG0vI9EI00";
     }
     function subscribeAnnual() {
       window.location.href = "https://buy.stripe.com/8x29AS6fV6tgaFW3HU9EI01";
     }
+
+    // Seat counter (update manually or later automate)
+    document.getElementById('seat-counter').textContent = "112/150 claimed";
   </script>
 </body>
 </html>
