@@ -1,19 +1,17 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/verify.js", "use": "@vercel/node" },
-    { "src": "api/create-checkout.js", "use": "@vercel/node" },
     { "src": "api/webhook.js", "use": "@vercel/node" },
     { "src": "api/check-access-elite.js", "use": "@vercel/node" },
     { "src": "api/check-access-pro.js", "use": "@vercel/node" },
+    { "src": "api/seat-count.js", "use": "@vercel/node" },
     { "src": "public/**", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/api/verify", "dest": "/api/verify.js" },
-    { "src": "/api/create-checkout", "dest": "/api/create-checkout.js" },
     { "src": "/api/webhook", "dest": "/api/webhook.js" },
     { "src": "/api/check-access-elite", "dest": "/api/check-access-elite.js" },
     { "src": "/api/check-access-pro", "dest": "/api/check-access-pro.js" },
+    { "src": "/api/seat-count", "dest": "/api/seat-count.js" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
