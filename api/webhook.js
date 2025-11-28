@@ -2,83 +2,116 @@
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
 const GIST_ID = process.env.GITHUB_GIST_ID;
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
 
-async function verifyAndAddEmail(email) {
-  if (!email) return false;
+async function updateGistFile(filename, newContent) {
+  const response = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `token ${GITHUB_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      files: {
+        [filename]: { content: newContent },
+      },
+    }),
+  });
+  return response.ok;
+}
 
-  // Fetch current Gist content
-  const gistRes = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
+async function getGistFileContent(filename) {
+  const res = await fetch(`https://api.github.com/gists/${GIST_ID}`, {
     headers: { Authorization: `token ${GITHUB_TOKEN}` },
   });
-  const gist = await gistRes.json();
-  const currentContent = gist.files?.['approved-customers.txt']?.content || '';
-  const emails = new Set(currentContent.split('\n').filter(e => e.trim()));
+  if (!res.ok) return '';
+  const gist = await res.json();
+  return gist.files?.[filename]?.content || '';
+}
+
+async function addEmailToGistFile(email, filename) {
+  if (!email) return false;
+
+  let content = await getGistFileContent(filename);
+  const emails = new Set(
+    content
+      .split('\n')
+      .map(e => e.trim())
+      .filter(e => e)
+  );
 
   if (!emails.has(email)) {
     emails.add(email);
     const newContent = Array.from(emails).join('\n') + '\n';
-    await fetch(`https://api.github.com/gists/${GIST_ID}`, {
-      method: 'PATCH',
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        files: { 'approved-customers.txt': { content: newContent } },
-      }),
-    });
+    await updateGistFile(filename, newContent);
     return true;
   }
   return false;
 }
 
+// Helper to read raw body in Vercel
+async function getRawBody(req) {
+  const chunks = [];
+  for await (const chunk of req) {
+    chunks.push(chunk);
+  }
+  return Buffer.concat(chunks).toString('utf8');
+}
+
 export const config = {
-  api: { bodyParser: false },
+  api: {
+    bodyParser: false,
+  },
 };
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') return res.status(405).end();
+  if (req.method !== 'POST') {
+    return res.status(405).end('Method Not Allowed');
+  }
 
-  // Read raw body
-  const buffer = await getRawBody(req);
+  const rawBody = await getRawBody(req);
   const sig = req.headers['stripe-signature'];
 
   let event;
   try {
-    event = stripe.webhooks.constructEvent(buffer.toString(), sig, WEBHOOK_SECRET);
+    event = stripe.webhooks.constructEvent(rawBody, sig, WEBHOOK_SECRET);
   } catch (err) {
-    console.error('Webhook error:', err.message);
-    return res.status(400).send('Webhook signature verification failed');
+    console.error('Webhook signature verification failed:', err.message);
+    return res.status(400).send('Webhook Error: ' + err.message);
   }
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-    if (session.payment_status === 'paid' && session.customer_details?.email) {
-      const email = session.customer_details.email;
 
-      // Confirm it's your Founder Bundle
-      const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
-      const isBundle = lineItems.data.some(
-        item => item.description?.includes('SaaSy Scribe ELITE – Founder Bundle (2025)')
-      );
-
-      if (isBundle) {
-        const added = await verifyAndAddEmail(email);
-        console.log(added ? `✅ Approved: ${email}` : `ℹ️ Already approved: ${email}`);
-        return res.status(200).json({ status: 'success' });
-      }
+    if (session.payment_status !== 'paid' || !session.customer_details?.email) {
+      return res.status(200).json({ status: 'ignored', reason: 'payment not complete or no email' });
     }
+
+    const email = session.customer_details.email;
+
+    // Fetch line items to detect product
+    const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
+    const description = lineItems.data[0]?.description || '';
+
+    let targetFile = null;
+
+    if (description.includes('SaaSy Scribe ELITE – Founder Bundle (2025)')) {
+      targetFile = 'elite-approved-customers.txt';
+    } else if (description.includes('SaaSy Scribe PRO')) {
+      targetFile = 'pro-approved-customers.txt';
+    } else {
+      console.log('Unrecognized product:', description);
+      return res.status(200).json({ status: 'ignored', reason: 'unknown product' });
+    }
+
+    const added = await addEmailToGistFile(email, targetFile);
+    console.log(added ? `✅ ${targetFile}: ${email}` : `ℹ️ Already approved: ${email}`);
+
+    return res.status(200).json({ status: 'success', file: targetFile });
   }
 
-  return res.status(200).json({ status: 'ignored' });
-}
-
-// Helper to read raw body in Vercel
-async function getRawBody(req) {
-  const chunks = [];
-  for await (const chunk of req) chunks.push(chunk);
-  return Buffer.concat(chunks);
+  return res.status(200).json({ status: 'ignored', event: event.type });
 }
